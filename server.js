@@ -2,16 +2,18 @@ const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("./middleware/auth");
 const cors = require("cors");
-require("dotenv").config();
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(passport.initialize()); // Add Passport middleware
+app.use(passport.initialize());
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI, {
+  .connect(process.env.MONGODB_CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

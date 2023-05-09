@@ -1,9 +1,13 @@
+const dotenv = require("dotenv");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
 const bcrypt = require("bcrypt");
-const User = require("./models/User");
+const User = require("../models/User");
+
+dotenv.config();
+
 const jwtSecret = process.env.JWT_SECRET;
 
 passport.use(
