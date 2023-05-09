@@ -24,4 +24,34 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  try {
+    const updatedRealEstate = await RealEstate.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (updatedRealEstate) {
+      res.json(updatedRealEstate);
+    } else {
+      res.status(404).json({ message: "Real estate not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Error updating real estate" });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const deletedRealEstate = await RealEstate.findByIdAndDelete(req.params.id);
+    if (deletedRealEstate) {
+      res.json({ message: "Real estate deleted successfully" });
+    } else {
+      res.status(404).json({ message: "Real estate not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting real estate" });
+  }
+});
+
 module.exports = router;
