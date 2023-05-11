@@ -30,8 +30,6 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-// Add this route if you want to register a new user.
-// You can remove it after creating an admin user.
 router.post("/register", async (req, res) => {
   const { email, password } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
