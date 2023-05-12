@@ -24,6 +24,17 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  const newRealEstate = new RealEstate(req.body);
+
+  try {
+    const savedRealEstate = await newRealEstate.save();
+    res.status(201).json(savedRealEstate);
+  } catch (error) {
+    res.status(500).json({ message: "Error saving new real estate" });
+  }
+});
+
 router.put("/:id", async (req, res) => {
   try {
     const updatedRealEstate = await RealEstate.findByIdAndUpdate(
