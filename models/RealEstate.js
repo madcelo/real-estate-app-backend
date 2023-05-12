@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const realEstateSchema = new mongoose.Schema({
-  imageUrl: String,
+  imageUrl: [String],
   title: String,
   description: String,
   type: String,
@@ -10,8 +10,8 @@ const realEstateSchema = new mongoose.Schema({
   bathrooms: Number,
   area: Number,
   address: String,
-  images: [String],
   additionalInfo: String,
+  featured: Boolean,
 });
 
 const RealEstate = mongoose.model("RealEstate", realEstateSchema, 'real-estates');
